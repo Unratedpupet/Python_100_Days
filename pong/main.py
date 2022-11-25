@@ -1,5 +1,6 @@
 from turtle import Screen
 from paddle import Paddle
+from scoreboard import Scoreboard
 import time
 
 WIDTH = 800
@@ -16,7 +17,7 @@ screen.listen()
 screen.onkeypress(paddle.up, "Up")
 screen.onkeypress(paddle.down, "Down")
 
-
+scoreboard = Scoreboard()
 
 
 
