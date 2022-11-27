@@ -5,6 +5,8 @@ import time
 
 WIDTH = 800
 HEIGHT = 600
+PLAYER_STARTING_POSITION = (350, 0)
+COMP_STARTING_POSITION = (-350, 0)
 
 screen = Screen()
 screen.setup(width=WIDTH, height=HEIGHT)
@@ -12,11 +14,12 @@ screen.bgcolor("black")
 screen.title("PONG")
 screen.tracer(0)
 
-paddle = Paddle()
+r_paddle = Paddle(PLAYER_STARTING_POSITION)
+l_paddle = Paddle(COMP_STARTING_POSITION)
 
 screen.listen()
-screen.onkeypress(paddle.up, "Up")
-screen.onkeypress(paddle.down, "Down")
+screen.onkeypress(r_paddle.up, "Up")
+screen.onkeypress(r_paddle.down, "Down")
 
 scoreboard = Scoreboard()
 
