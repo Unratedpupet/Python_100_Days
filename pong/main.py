@@ -10,6 +10,7 @@ screen = Screen()
 screen.setup(width=WIDTH, height=HEIGHT)
 screen.bgcolor("black")
 screen.title("PONG")
+screen.tracer(0)
 
 paddle = Paddle()
 
@@ -19,6 +20,9 @@ screen.onkeypress(paddle.down, "Down")
 
 scoreboard = Scoreboard()
 
+game_is_on = True
 
+while game_is_on:
+    screen.update()
 
 screen.exitonclick()
