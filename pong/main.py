@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from scoreboard import Scoreboard
+from ball import Ball
 import time
 
 WIDTH = 800
@@ -25,10 +26,14 @@ screen.onkeypress(l_paddle.up, "w")
 screen.onkeypress(l_paddle.down, "s")
 
 scoreboard = Scoreboard()
+ball = Ball()
 
 game_is_on = True
 
 while game_is_on:
     screen.update()
+    time.sleep(.1)
+
+    ball.move()
 
 screen.exitonclick()
