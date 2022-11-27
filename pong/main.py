@@ -21,6 +21,9 @@ screen.listen()
 screen.onkeypress(r_paddle.up, "Up")
 screen.onkeypress(r_paddle.down, "Down")
 
+screen.onkeypress(l_paddle.up, "w")
+screen.onkeypress(l_paddle.down, "s")
+
 scoreboard = Scoreboard()
 
 game_is_on = True
