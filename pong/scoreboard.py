@@ -6,14 +6,14 @@ FONT = ("Courier", 30, "bold")
 
 class Scoreboard(Turtle):
 
-    def __init__(self):
+    def __init__(self, starting_pos):
         super().__init__()
         self.score = 0
         self.color("white")
         self.penup()
         self.hideturtle()
         self.speed("fastest")
-        self.goto(0, 250)
+        self.goto(starting_pos)
         self.update_scoreboard()
 
     def update_scoreboard(self):

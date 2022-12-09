@@ -6,8 +6,11 @@ import time
 
 WIDTH = 800
 HEIGHT = 600
-PLAYER_STARTING_POSITION = (350, 0)
-COMP_STARTING_POSITION = (-350, 0)
+RIGHT_PADDLE_POSITION = (350, 0)
+LEFT_PADDLE_POSITION = (-350, 0)
+RIGHT_SCORE_POSITION = (100, 250)
+LEFT_SCORE_POSITION = (-100, 250)
+
 
 screen = Screen()
 screen.setup(width=WIDTH, height=HEIGHT)
@@ -15,8 +18,11 @@ screen.bgcolor("black")
 screen.title("PONG")
 screen.tracer(0)
 
-r_paddle = Paddle(PLAYER_STARTING_POSITION)
-l_paddle = Paddle(COMP_STARTING_POSITION)
+r_paddle = Paddle(RIGHT_PADDLE_POSITION)
+l_paddle = Paddle(LEFT_PADDLE_POSITION)
+
+right_score = Scoreboard(RIGHT_SCORE_POSITION)
+left_score = Scoreboard(LEFT_SCORE_POSITION)
 
 screen.listen()
 screen.onkeypress(r_paddle.up, "Up")
@@ -25,7 +31,7 @@ screen.onkeypress(r_paddle.down, "Down")
 screen.onkeypress(l_paddle.up, "w")
 screen.onkeypress(l_paddle.down, "s")
 
-scoreboard = Scoreboard()
+
 ball = Ball()
 
 game_is_on = True
@@ -47,7 +53,11 @@ while game_is_on:
     # Detects scoring
     if ball.xcor() > 400:
         # Left score point
+        left_score.increase_score()
+        ball.reset_position()
     elif ball.xcor() < -400:
         # Right score point
+        right_score.increase_score()
+        ball.reset_position()
 
 screen.exitonclick()
