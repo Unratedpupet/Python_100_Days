@@ -22,13 +22,13 @@ def word_to_blanks(word):
         
 # Checks to see if the letter is in the hangman word.
 def check_guess(letter):
-    if letter not in guesses:
-        if letter in hangman_word:
-            print(f"{letter} is in the word.")
-        else:
-            print(f"{letter} is no in the word.")
-    else:
+    if letter in guesses:
         print(f"You have already guessed the letter {letter}. Please try again.")
+    else:
+        for char in hangman_word:
+            if char == letter:
+                print(f"{letter} is correct.")
+    # Addes guessed letter to the guessed letters.    
     guesses.add(letter)
 
 
@@ -40,7 +40,9 @@ guesses = set()
 
 while game_state:
     
-
+    print(hangman_word)
+    print(hangman_blanks)
+    print(f"You have already guessed: {guesses}")
     user_guess = input("Please guess a letter: ").lower()
     check_guess(user_guess)
 
