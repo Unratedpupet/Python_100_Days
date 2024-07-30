@@ -1,7 +1,7 @@
 ## Making a hangman game
 
 import random
-attempts = 6
+
 
 # First challenge is to make a list of random words, make blanks equal to the number of letters in the word, and have user guess.
 
@@ -34,6 +34,7 @@ def check_guess(letter):
                     hangman_blanks[index] = letter
                 index += 1
         else: 
+            print(f"{letter} was not in the word.")
             attempts -= 1        
                 
 
@@ -56,6 +57,7 @@ game_state = True
 hangman_word = chose_word()
 hangman_blanks = word_to_blanks(hangman_word)
 guesses = set()
+attempts = 6
 
 
 while game_state:
@@ -63,7 +65,7 @@ while game_state:
     print(f"You have {attempts} attempts left.")
     print(hangman_word)
     print(hangman_blanks)
-    print(f"You have already guessed: {guesses}")
+    print(f"You have already guessed: {', '.join(guesses)}")
     user_guess = input("Please guess a letter: ").lower()
     check_guess(user_guess)
     check_win()
