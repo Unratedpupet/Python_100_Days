@@ -48,7 +48,7 @@ def check_win():
         game_state = False
     
     if '_' not in hangman_blanks:
-        print("You win!")
+        print(f"You win! The correct answer was {hangman_word}")
         game_state = False
 
 
@@ -63,7 +63,6 @@ attempts = 6
 while game_state:
     
     print(f"You have {attempts} attempts left.")
-    print(hangman_word)
     print(' '.join(hangman_blanks))
     print(f"You have already guessed: {', '.join(guesses)}")
     user_guess = input("Please guess a letter: ").lower()
