@@ -1,11 +1,14 @@
 ## Making a hangman game
 
 import random
-
+import hangman_art
+import hangman_words
 
 # First challenge is to make a list of random words, make blanks equal to the number of letters in the word, and have user guess.
 
-word_list = ['python', 'javascript', 'hangman', 'development', 'programming', 'algorithm', 'datastructure', 'variable', 'function', 'object']
+word_list = hangman_words.word_list
+stage = hangman_art.stages
+logo = hangman_art.logo
 
 # Chose the random word
 
@@ -45,12 +48,31 @@ def check_win():
     global game_state
     if attempts < 1:
         print(f"You lose. The correct answer was {hangman_word}.")
+        print(stage[0])
         game_state = False
     
     if '_' not in hangman_blanks:
         print(f"You win! The correct answer was {hangman_word}")
         game_state = False
 
+def stages():
+    global attempts
+    match attempts:
+        case 6:
+            print(stage[6])
+        case 5:
+            print(stage[5])
+        case 4:
+            print(stage[4])
+        case 3:
+            print(stage[3])
+        case 2:
+            print(stage[2])
+        case 1:
+            print(stage[1])
+        case 0:
+            print(stage[0])
+    
 
 
 game_state = True
@@ -62,11 +84,14 @@ attempts = 6
 
 while game_state:
     
+    print(logo)
+    stages()
     print(f"You have {attempts} attempts left.")
     print(' '.join(hangman_blanks))
     print(f"You have already guessed: {', '.join(guesses)}")
     user_guess = input("Please guess a letter: ").lower()
     check_guess(user_guess)
     check_win()
+    
     
 
