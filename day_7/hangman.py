@@ -16,13 +16,11 @@ def chose_word():
 
 # Changes the letters into '_' to allow for guesses.
 def word_to_blanks(word):
-    blanks = []
-    for char in word:
-        blanks.append("_")
-    return blanks
+    return ['_'] * len(word)
         
 # Checks to see if the letter is in the hangman word.
 def check_guess(letter):
+    global attempts
     if letter in guesses:
         print(f"You have already guessed the letter {letter}. Please try again.")
     else:
@@ -42,6 +40,16 @@ def check_guess(letter):
     # Addes guessed letter to the guessed letters.    
     guesses.add(letter)
 
+def check_win():
+    global game_state
+    if attempts < 1:
+        print(f"You lose. The correct answer was {hangman_word}.")
+        game_state = False
+    
+    if '_' not in hangman_blanks:
+        print("You win!")
+        game_state = False
+
 
 
 game_state = True
@@ -50,7 +58,7 @@ hangman_blanks = word_to_blanks(hangman_word)
 guesses = set()
 
 
-while attempts > 0:
+while game_state:
     
     print(f"You have {attempts} attempts left.")
     print(hangman_word)
@@ -58,5 +66,6 @@ while attempts > 0:
     print(f"You have already guessed: {guesses}")
     user_guess = input("Please guess a letter: ").lower()
     check_guess(user_guess)
+    check_win()
     
 
