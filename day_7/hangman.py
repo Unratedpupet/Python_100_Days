@@ -64,7 +64,7 @@ while game_state:
     
     print(f"You have {attempts} attempts left.")
     print(hangman_word)
-    print(hangman_blanks)
+    print(' '.join(hangman_blanks))
     print(f"You have already guessed: {', '.join(guesses)}")
     user_guess = input("Please guess a letter: ").lower()
     check_guess(user_guess)
