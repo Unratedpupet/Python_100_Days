@@ -106,9 +106,20 @@ while is_playing:
     if play == "h":
         player_hand.append(draw_card())
         print(f"Your hand is now {player_hand}")
-        if blackjack(player_hand):
-            is_playing = player_win()
+        if bust(player_hand):
+            print(f"You bust with the {sum(player_hand)}")
+            is_playing = False
     else:
-        dealer_play()
+        dealer_total = dealer_play()
+        player_total = sum(player_hand)
+        if dealer_hand > 21 or player_total > dealer_total:
+            print("You win!")
+            is_playing = False
+        elif dealer_total == player_total:
+            print("It's a draw.")
+            is_playing = False
+        else:
+            dealer_win()
+            is_playing = False
 
 
