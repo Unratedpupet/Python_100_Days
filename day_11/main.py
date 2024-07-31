@@ -82,12 +82,17 @@ def blackjack(hand: list) -> bool:
     """
     return sum(hand) == 21
 
-def player_start():
+def player_start() -> bool:
+    """Creates the player start by drawing two cards and checking for blackjack.
+    """
+    global is_playing
     player_hand.append(draw_card())
     player_hand.append(draw_card())
     if blackjack(player_hand):
         print(f"Player got blackjack with a hand of {player_hand}!")
-        is_playing = False
+        return False
+    else:
+        return True
 
 player_hand = []
 dealer_hand = []
@@ -96,34 +101,32 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 is_playing = True
 
-dealer_hand.append(draw_card())
-player_start()
-
-
-
 while is_playing:
     print(logo)
-    print(f"Your hand is {player_hand}")
-    print(f"The dealer's first card is {dealer_hand}") 
+    dealer_hand.append(draw_card())
+    if player_start():
+    
+        print(f"Your hand is {player_hand}")
+        print(f"The dealer's first card is {dealer_hand}") 
 
-    play = input("'h' for hit, 's' for stand: ")
-    if play == "h":
-        player_hand.append(draw_card())
-        print(f"Your hand is now {player_hand}")
-        if bust(player_hand):
-            print(f"You bust with the {sum(player_hand)}")
-            is_playing = False
-    else:
-        dealer_total = dealer_play()
-        player_total = sum(player_hand)
-        if dealer_total > 21 or player_total > dealer_total:
-            print("You win!")
-            is_playing = False
-        elif dealer_total == player_total:
-            print("It's a draw.")
-            is_playing = False
+        play = input("'h' for hit, 's' for stand: ")
+        if play == "h":
+            player_hand.append(draw_card())
+            print(f"Your hand is now {player_hand}")
+            if bust(player_hand):
+                print(f"You bust with the {sum(player_hand)}")
+                is_playing = False
         else:
-            dealer_win()
-            is_playing = False
-
-
+            dealer_total = dealer_play()
+            player_total = sum(player_hand)
+            if dealer_total > 21 or player_total > dealer_total:
+                print("You win!")
+                is_playing = False
+            elif dealer_total == player_total:
+                print("It's a draw.")
+                is_playing = False
+            else:
+                dealer_win()
+                is_playing = False
+    else:
+        is_playing = False
