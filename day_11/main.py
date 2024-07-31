@@ -18,7 +18,7 @@
 ## The computer is the dealer.
 
 # Flow
-# Do you want to play a game of Blackjack? Type 'y' or 'n': 
+# Do you want to play a game of Blackjack? Type 'y' or 'n':  ||| Not going to ask... you opened it, you play it.
 # Prints the logo each time
 # Shows your cards, in a list format
 # Shows dealer first card
@@ -31,6 +31,22 @@
 # Ace can be 1 or 11. if ace in hand and hand > 21, convert ace to 1.
 # If player hand 10 + 11, auto win.
 
+from random import choice
 from art import logo
 print(logo)
+
+def draw_card():
+    """Draws a random card
+
+    Returns:
+        int: Randomly selected card from the cards deck
+    """
+    return choice(cards)
+
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+is_playing = True
+
+
 
