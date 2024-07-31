@@ -2,18 +2,29 @@ from art import logo
 
 bidding = {}
 
-# Makeshift clear command to clear screen.
+
 def clear():
+    """
+    Makeshift clear command to clear screen.
+    """
     print("\n" * 50)
 
 
-# Adds the bid to the bidding dictionary.
 def add_bid(name, bid):
+    """
+    Adds the bid to the bidding dictionary
+
+    Args:
+        name (string): The name of the bidder.
+        bid (int): The bid amount.
+    """
     bidding[name] = bid
 
 
-# Iterates through the bidding dictionary to find the highest bid and prints the highest bidder.
 def find_winning_bid():
+    """
+    Iterates through the bidding dictionary to find the highest bid and prints the highest bidder.
+    """
     highest_bid = 0
     highest_bid_name = ""
     for name in bidding:
