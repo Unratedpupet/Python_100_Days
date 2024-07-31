@@ -100,6 +100,12 @@ def player_win() -> bool:
     return False
 
 
+def player_start():
+    player_hand.append(draw_card())
+    player_hand.append(draw_card())
+    if blackjack(player_hand):
+        player_win()
+
 player_hand = []
 dealer_hand = []
 
@@ -108,6 +114,8 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 is_playing = True
 
 dealer_hand.append(draw_card())
+player_start()
+print(f"Your hand is {player_hand}")
 print(f"The dealer's first card is {dealer_hand}")
 
 play = input("'h' for hit, 's' for stand")
