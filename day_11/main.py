@@ -112,7 +112,7 @@ while is_playing:
     else:
         dealer_total = dealer_play()
         player_total = sum(player_hand)
-        if dealer_hand > 21 or player_total > dealer_total:
+        if dealer_total > 21 or player_total > dealer_total:
             print("You win!")
             is_playing = False
         elif dealer_total == player_total:
