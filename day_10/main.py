@@ -61,12 +61,14 @@ operations = {
 
 print(logo)
 
+is_more = True
+
 num1 = int(input("What is the first number? "))
+
 # Prints out the operation list
 for key in operations.keys():
-    print(key)
-
-operation_symbol = input("Pick an operation from the lines above: ")
+        print(key)
+operation_symbol = input("Pick an operation: ")
 
 num2 = int(input("What is the second number? "))
 
@@ -74,3 +76,24 @@ num2 = int(input("What is the second number? "))
 answer = operations[operation_symbol](num1, num2)
 
 print(f"{num1} {operation_symbol} {num2} = {answer}.")
+
+
+
+while is_more:
+    question = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to exit: ")
+    if question != 'y':
+        is_more = False
+    else:
+        operation_symbol = input("Pick an operation: ")
+
+        num2 = int(input("What is the second number? "))
+
+        # Calculates the answer by finding the value from the operation_symbol function to call the appropriate function
+        new_answer = operations[operation_symbol](answer, num2)
+
+        print(f"{answer} {operation_symbol} {num2} = {new_answer}.")
+        answer = new_answer
+    
+
+
+    
