@@ -71,6 +71,10 @@ def blackjack(hand: list) -> bool:
     """
     return sum(hand) == 21
 
+def player_win():
+    print("You win.")
+    is_playing = False
+
 
 player_hand = []
 dealer_hand = []
@@ -85,6 +89,8 @@ print(f"The dealer's first card is {dealer_hand}")
 play = input("'h' for hit, 's' for stand")
 if play == "h":
     player_hand.append(draw_card())
+    if blackjack(player_hand):
+        player_win()
 else:
     dealer_play()
 
