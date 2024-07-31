@@ -87,6 +87,7 @@ def player_start():
     player_hand.append(draw_card())
     if blackjack(player_hand):
         print(f"Player got blackjack with a hand of {player_hand}!")
+        is_playing = False
 
 player_hand = []
 dealer_hand = []
@@ -98,13 +99,14 @@ is_playing = True
 dealer_hand.append(draw_card())
 player_start()
 
-print(f"Your hand is {player_hand}")
-print(f"The dealer's first card is {dealer_hand}")
+
 
 while is_playing:
     print(logo)
+    print(f"Your hand is {player_hand}")
+    print(f"The dealer's first card is {dealer_hand}") 
 
-    play = input("'h' for hit, 's' for stand")
+    play = input("'h' for hit, 's' for stand: ")
     if play == "h":
         player_hand.append(draw_card())
         print(f"Your hand is now {player_hand}")
