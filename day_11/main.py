@@ -33,7 +33,7 @@
 
 from random import choice
 from art import logo
-print(logo)
+
 
 def draw_card() -> int:
     """Draws a random card
@@ -57,6 +57,7 @@ def bust(hand: list[int]) -> bool:
 def dealer_play() -> int:
     while sum(dealer_hand) < 16:
         dealer_hand.append(draw_card())
+        print(f"Dealer hits to make hand {dealer_hand}")
 
     total = sum(dealer_hand)
 
@@ -85,7 +86,7 @@ def player_start():
     player_hand.append(draw_card())
     player_hand.append(draw_card())
     if blackjack(player_hand):
-        player_win()
+        print(f"Player got blackjack with a hand of {player_hand}!")
 
 player_hand = []
 dealer_hand = []
@@ -101,6 +102,7 @@ print(f"Your hand is {player_hand}")
 print(f"The dealer's first card is {dealer_hand}")
 
 while is_playing:
+    print(logo)
 
     play = input("'h' for hit, 's' for stand")
     if play == "h":
