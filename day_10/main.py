@@ -1,16 +1,5 @@
 from art import logo
 
-print(logo)
-
-# What is the first number
-# Pick an operation
-# What is the next number
-# Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation
-
-
-# Create functions for each +, -, *, /.
-
-
 def add(n1, n2):
     """Adds two numbers together
 
@@ -62,5 +51,26 @@ def divide(n1, n2):
     else:
         return "Cannot divide by zero."
     
-    
-    
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide
+}
+
+print(logo)
+
+num1 = int(input("What is the first number? "))
+# Prints out the operation list
+for key in operations.keys():
+    print(key)
+
+operation_symbol = input("Pick an operation from the lines above: ")
+
+num2 = int(input("What is the second number? "))
+
+# Calculates the answer by finding the value from the operation_symbol function to call the appropriate function
+answer = operations[operation_symbol](num1, num2)
+
+print(f"{num1} {operation_symbol} {num2} = {answer}.")
