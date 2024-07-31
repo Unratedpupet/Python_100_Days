@@ -35,7 +35,7 @@ from random import choice
 from art import logo
 print(logo)
 
-def draw_card():
+def draw_card() -> int:
     """Draws a random card
 
     Returns:
@@ -43,10 +43,30 @@ def draw_card():
     """
     return choice(cards)
 
+def bust(hand: list) -> bool:
+    """Checks to see if the hand is a bust.
+
+    Args:
+        hand (list): The hand to be checked.
+
+    Returns:
+        bool: True if over 21. False if < 21.
+    """
+    total = sum(hand)
+    return total > 21
+
+
+player_hand = []
+dealer_hand = []
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 is_playing = True
+
+play = input("'h' for hit, 's' for stand")
+
+player_hand.append(draw_card())
+
 
 
 
