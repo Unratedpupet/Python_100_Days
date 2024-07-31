@@ -55,25 +55,17 @@ def bust(hand: list[int]) -> bool:
     return sum(hand) > 21
 
 def dealer_play() -> int:
-    # Draws second card.
-    dealer_hand.append(draw_card())
+    while sum(dealer_hand) < 16:
+        dealer_hand.append(draw_card())
+
     total = sum(dealer_hand)
 
-    # Checks to see if dealer got blackjack.
-    if blackjack(dealer_hand):
-        dealer_win()
-        return total
-    
-    # While the dealer hand is less than 16, keep drawing cards to hand.
-    while 16 > total:
-        dealer_hand.append(draw_card)
-        total = sum(dealer_hand)
-
-    # Once hand is greater than 16, checks to see if dealer busts. If not, returns the sum of the hand.
     if bust(dealer_hand):
-        player_win()
+        print(f"Dealer busts with {total}. You win!")
+        return total
     else:
         return total
+
 
 def dealer_win():
     print(f"Dealer wins with {sum(dealer_hand)}.")
@@ -88,16 +80,6 @@ def blackjack(hand: list) -> bool:
         bool: True if 21, False if not.
     """
     return sum(hand) == 21
-
-def player_win() -> bool:
-    """Prints that the player wins and returns a false bool to stop the play
-
-    Returns:
-        bool: Returns a false value
-    """
-    print("You win.")
-    return False
-
 
 def player_start():
     player_hand.append(draw_card())
@@ -114,15 +96,19 @@ is_playing = True
 
 dealer_hand.append(draw_card())
 player_start()
+
 print(f"Your hand is {player_hand}")
 print(f"The dealer's first card is {dealer_hand}")
 
-play = input("'h' for hit, 's' for stand")
-if play == "h":
-    player_hand.append(draw_card())
-    if blackjack(player_hand):
-        is_playing = player_win()
-else:
-    dealer_play()
+while is_playing:
+
+    play = input("'h' for hit, 's' for stand")
+    if play == "h":
+        player_hand.append(draw_card())
+        print(f"Your hand is now {player_hand}")
+        if blackjack(player_hand):
+            is_playing = player_win()
+    else:
+        dealer_play()
 
 
