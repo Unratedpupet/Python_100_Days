@@ -43,7 +43,7 @@ def draw_card() -> int:
     """
     return choice(cards)
 
-def bust(hand: list) -> bool:
+def bust(hand: list[int]) -> bool:
     """Checks to see if the hand is a bust.
 
     Args:
@@ -52,8 +52,7 @@ def bust(hand: list) -> bool:
     Returns:
         bool: True if over 21. False if < 21.
     """
-    total = sum(hand)
-    return total > 21
+    return sum(hand) > 21
 
 def dealer_play() -> int:
     # Draws second card.
@@ -61,7 +60,7 @@ def dealer_play() -> int:
     total = sum(dealer_hand)
 
     # Checks to see if dealer got blackjack.
-    if blackjack():
+    if blackjack(dealer_hand):
         dealer_win()
         return total
     
