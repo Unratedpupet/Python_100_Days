@@ -25,6 +25,10 @@ lives = 0
 
 print(logo)
 
+secret_number = (choose_number())
+
+print(secret_number)
+
 choose_difficulty = input("Choose a level. Easy 'e' or Hard 'h': ")
 
 if choose_difficulty == 'e':
@@ -34,7 +38,7 @@ elif choose_difficulty == 'h':
 else:
     print("Please enter 'e' or 'h'.")
 
-secret_number = (choose_number())
+
 
 player_guess = int(input("What is your guess: "))
 
