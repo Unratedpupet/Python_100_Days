@@ -34,7 +34,6 @@
 from random import choice
 from art import logo
 
-
 def draw_card() -> int:
     """Draws a random card
 
@@ -54,25 +53,24 @@ def bust(hand: list[int]) -> bool:
     """
     return sum(hand) > 21
 
-def dealer_play() -> int:
+def dealer_play():
+    """Simulates the dealer's play and determines if the dealer busts or stands."""
     while sum(dealer_hand) < 16:
         dealer_hand.append(draw_card())
         print(f"Dealer hits to make hand {dealer_hand}")
 
-    total = sum(dealer_hand)
-
     if bust(dealer_hand):
-        print(f"Dealer busts with {total}. You win!")
-        return total
+        print(f"Dealer busts with {sum(dealer_hand)}. You win!")
+        return True
     else:
-        return total
-
+        return False
 
 def dealer_win():
+    """Just prints out dealer wins."""
     print(f"Dealer wins with {sum(dealer_hand)}.")
 
 def blackjack(hand: list) -> bool:
-    """Checks to see if blackjack occured
+    """Checks to see if blackjack occurred
 
     Args:
         hand (list): The hand to be checked.
@@ -83,9 +81,7 @@ def blackjack(hand: list) -> bool:
     return sum(hand) == 21
 
 def player_start() -> bool:
-    """Creates the player start by drawing two cards and checking for blackjack.
-    """
-    global is_playing
+    """Creates the player start by drawing two cards and checking for blackjack."""
     player_hand.append(draw_card())
     player_hand.append(draw_card())
     if blackjack(player_hand):
@@ -93,6 +89,17 @@ def player_start() -> bool:
         return False
     else:
         return True
+
+def new_game() -> bool:
+    """Clears both hands and asks if you want to start a new game.
+
+    Returns:
+        bool: The T/F response to starting a new game.
+    """
+    player_hand.clear()
+    dealer_hand.clear()
+    result = input("Would you like to keep playing? y/n\n").lower()
+    return result == 'y'
 
 player_hand = []
 dealer_hand = []
@@ -105,28 +112,34 @@ while is_playing:
     print(logo)
     dealer_hand.append(draw_card())
     if player_start():
-    
-        print(f"Your hand is {player_hand}")
-        print(f"The dealer's first card is {dealer_hand}") 
+        while True:
+            print(f"Your hand is {player_hand}")
+            print(f"The dealer's first card is {dealer_hand}") 
 
-        play = input("'h' for hit, 's' for stand: ")
-        if play == "h":
-            player_hand.append(draw_card())
-            print(f"Your hand is now {player_hand}")
-            if bust(player_hand):
-                print(f"You bust with the {sum(player_hand)}")
-                is_playing = False
-        else:
-            dealer_total = dealer_play()
-            player_total = sum(player_hand)
-            if dealer_total > 21 or player_total > dealer_total:
-                print("You win!")
-                is_playing = False
-            elif dealer_total == player_total:
-                print("It's a draw.")
-                is_playing = False
+            play = input("'h' for hit, 's' for stand: ").lower()
+            if play == "h":
+                player_hand.append(draw_card())
+                print(f"Your hand is now {player_hand}")
+                if bust(player_hand):
+                    print(f"You bust with the {sum(player_hand)}")
+                    break
+            elif play == "s":
+                if dealer_play():
+                    break
+                player_total = sum(player_hand)
+                dealer_total = sum(dealer_hand)
+                print(f"Dealer's hand is {dealer_hand} with a total of {dealer_total}")
+                print(f"Your hand is {player_hand} with a total of {player_total}")
+
+                if dealer_total > 21 or player_total > dealer_total:
+                    print("You win!")
+                elif dealer_total == player_total:
+                    print("It's a draw.")
+                else:
+                    dealer_win()
+                break
             else:
-                dealer_win()
-                is_playing = False
+                print("Invalid input. Please enter 'h' or 's'.")
+        is_playing = new_game()
     else:
-        is_playing = False
+        is_playing = new_game()
