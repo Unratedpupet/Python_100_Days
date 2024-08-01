@@ -15,9 +15,34 @@ def choose_number() -> int:
     return choice(range(0, 101))
 
 
+def lose_life():
+    return lives - 1
+
 EASY_LEVEL = 10 
 HARD_LEVEL = 5
 
-secret_number = (choose_number())
+lives = 0
 
 print(logo)
+
+choose_difficulty = input("Choose a level. Easy 'e' or Hard 'h': ")
+
+if choose_difficulty == 'e':
+    lives = EASY_LEVEL
+elif choose_difficulty == 'h':
+    lives = HARD_LEVEL
+else:
+    print("Please enter 'e' or 'h'.")
+
+secret_number = (choose_number())
+
+player_guess = int(input("What is your guess: "))
+
+if player_guess == secret_number:
+    print(f"You got it!. The correct number was {secret_number}.")
+elif player_guess > secret_number:
+    print(f"You guessed {player_guess}, that was too high.")
+    lose_life()
+else:
+    print(f"You guessed {player_guess}, that is too low.")
+    lose_life()
