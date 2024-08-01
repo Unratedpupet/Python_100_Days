@@ -43,22 +43,24 @@ def draw_card() -> int:
     return choice(cards)
 
 def bust(hand: list[int]) -> bool:
-    """Checks to see if the hand is a bust.
+    """Checks to see if the hand is a bust after adjusting for Aces.
 
     Args:
-        hand (list): The hand to be checked.
+        hand (list[int]): The hand to be checked.
 
     Returns:
-        bool: True if over 21. False if < 21.
+        bool: True if over 21, False if 21 or under.
     """
+    hand = adjust_for_ace(hand)
     return sum(hand) > 21
 
-def dealer_play():
+def dealer_play() -> bool:
     """Simulates the dealer's play and determines if the dealer busts or stands."""
     while sum(dealer_hand) < 16:
         dealer_hand.append(draw_card())
         print(f"Dealer hits to make hand {dealer_hand}")
 
+    dealer_hand = adjust_for_ace(dealer_hand)
     if bust(dealer_hand):
         print(f"Dealer busts with {sum(dealer_hand)}. You win!")
         return True
@@ -100,6 +102,19 @@ def new_game() -> bool:
     dealer_hand.clear()
     result = input("Would you like to keep playing? y/n\n").lower()
     return result == 'y'
+
+def adjust_for_ace(hand: list[int]) -> list[int]:
+    """Adjusts the hand for Aces to prevent busting.
+
+    Args:
+        hand (list[int]): The hand to be adjusted.
+
+    Returns:
+        list[int]: The adjusted hand.
+    """
+    while sum(hand) > 21 and 11 in hand:
+        hand[hand.index(11)] = 1
+    return hand
 
 player_hand = []
 dealer_hand = []
