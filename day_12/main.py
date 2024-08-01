@@ -40,13 +40,16 @@ else:
 
 
 
-player_guess = int(input("What is your guess: "))
+player_guess = 0
 
-if player_guess == secret_number:
-    print(f"You got it!. The correct number was {secret_number}.")
-elif player_guess > secret_number:
-    print(f"You guessed {player_guess}, that was too high.")
-    lose_life()
-else:
-    print(f"You guessed {player_guess}, that is too low.")
-    lose_life()
+while player_guess != secret_number:
+    player_guess = int(input("What is your guess: "))
+
+    if player_guess > secret_number:
+        print(f"You guessed {player_guess}, that was too high.")
+        lose_life()
+        print(f"You have {lives} lives left.")
+    else:
+        print(f"You guessed {player_guess}, that is too low.")
+        lose_life()
+        print(f"You have {lives} lives left.")
