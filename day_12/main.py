@@ -11,6 +11,10 @@
 from random import choice
 from art import logo
 
+
+EASY_LEVEL = 10 
+HARD_LEVEL = 5
+
 def choose_number() -> int:
     return choice(range(0, 101))
 
@@ -18,8 +22,6 @@ def choose_number() -> int:
 def lose_life():
     return lives - 1
 
-EASY_LEVEL = 10 
-HARD_LEVEL = 5
 
 lives = 0
 
