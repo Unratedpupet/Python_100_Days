@@ -38,28 +38,47 @@ def report():
     print(f"Cash: {bank}")
 
 def make_espresso():
-    print("Made espresso")
+    if check_resources("espresso"):
+        print("Made espresso")
+    else:
+        print("Could not make espresso, need more of an item.")
 
 def make_latte():
-    print("Made latte")
+    if check_resources("latte"):
+        print("Made latte")
+    else:
+        print("Could not make latte, need more of an item.")
 
 def make_cappuccino():
-    print("Made cappuccino")
-
-on = True
-
-while on:
-    command = input("What would you like? espresso/latte/cappuccino\n")
-
-    if command == "off":
-        on = False
-    elif command == "report":
-        report()
-    elif command == "espresso":
-        make_espresso()
-    elif command == "latte":
-        make_latte()
-    elif command == "cap":
-        make_cappuccino()
+    if check_resources("cappuccino"):
+        print("Made cappuccino")
     else:
-        print("Please enter a valid command.")
+        print("Could not make cappuccino, need more of an item.")
+
+def check_resources(drink: str) -> bool:
+    for ingredient, amount in MENU[drink]["ingredients"].items():
+        if resources[ingredient] < amount:
+            return False
+    return True
+
+
+def operations():
+    on = True
+
+    while on:
+        command = input("What would you like? espresso/latte/cappuccino\n")
+
+        if command == "off":
+            on = False
+        elif command == "report":
+            report()
+        elif command == "espresso":
+            make_espresso()
+        elif command == "latte":
+            make_latte()
+        elif command == "cappuccino":
+            make_cappuccino()
+        else:
+            print("Please enter a valid command.")
+
+operations()
