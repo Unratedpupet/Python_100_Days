@@ -66,14 +66,14 @@ def operations():
         elif command == "report":
             report()
         elif command == "espresso":
-            check_resources(command)
-            make_drink(command)
+            if check_resources(command):
+                make_drink(command)
         elif command == "latte":
-            check_resources(command)
-            make_drink(command)
+            if check_resources(command):
+                make_drink(command)
         elif command == "cappuccino":
-            check_resources(command)
-            make_drink(command)
+            if check_resources(command):
+                make_drink(command)
         else:
             print("Please enter a valid command.")
 
