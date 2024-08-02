@@ -32,4 +32,6 @@ random_pick_1 = choice(data)
 random_pick_2 = choice(data)
 
 print(f"{random_pick_1['name']}, a {random_pick_1['description']}, from {random_pick_1['country']}")
+print(art.vs)
+print(f"{random_pick_1['name']}, a {random_pick_1['description']}, from {random_pick_1['country']}")
 
