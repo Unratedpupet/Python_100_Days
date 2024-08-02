@@ -3,7 +3,6 @@ from game_data import data
 from random import choice
 
 """
-
 Higher vs Lower game.
 
 First print out the logo
@@ -22,8 +21,6 @@ game_data items are a list of dictionaries with the following keys:
 keep score of how many gotten right.
 Game ends first time player is wrong
     display message and final score.
-
-
 """
 
 
@@ -33,13 +30,15 @@ print(art.logo)
 player_score = 0
 round = 1
 
+random_pick_a = choice(data)
+winning_pick = {}
 
 not_losing = True
 
 while not_losing:
 
     # Picks random choices from the game_data file.
-    random_pick_a = choice(data)
+
     random_pick_b = choice(data)
     # Finds the choice with the higher follower count. Then assigns that to either 'a' or 'b' to use when answering.
     pick_a_followers = random_pick_a['follower_count']
@@ -47,8 +46,10 @@ while not_losing:
     higher_follower_count = ''
     if pick_a_followers > pick_b_followers:
         higher_follower_count = 'a'
+        winning_pick = random_pick_a
     else:
         higher_follower_count = 'b'
+        winning_pick = random_pick_b
     print(f"The current round is: {round}")
     print(f"Compare A: {random_pick_a['name']}, a {random_pick_a['description']}, from {random_pick_a['country']}")
     print(art.vs)
@@ -58,6 +59,7 @@ while not_losing:
     if answer == higher_follower_count:
         player_score += 1
         round += 1
+        random_pick_a = winning_pick
         print("That's correct. Next round!")
     else:
         print(f"You lose with a final score of {player_score}")
