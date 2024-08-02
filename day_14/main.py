@@ -1,6 +1,6 @@
 import art
-from game_data import game_data
-from random import choices
+from game_data import data
+from random import choice
 
 """
 
@@ -25,4 +25,11 @@ Game ends first time player is wrong
 
 
 """
+
+print(art.logo)
+
+random_pick_1 = choice(data)
+random_pick_2 = choice(data)
+
+print(f"{random_pick_1['name']}, a {random_pick_1['description']}, from {random_pick_1['country']}")
 
