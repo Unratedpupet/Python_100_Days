@@ -19,39 +19,47 @@ def choose_number() -> int:
     return choice(range(0, 101))
 
 
-def lose_life():
-    return lives - 1
-
-
-lives = 0
-
-print(logo)
-
-secret_number = (choose_number())
-
-print(secret_number)
-
-choose_difficulty = input("Choose a level. Easy 'e' or Hard 'h': ")
-
-if choose_difficulty == 'e':
-    lives = EASY_LEVEL
-elif choose_difficulty == 'h':
-    lives = HARD_LEVEL
-else:
-    print("Please enter 'e' or 'h'.")
+# def lose_life():
+#     return lives - 1
 
 
 
-player_guess = 0
 
-while player_guess != secret_number:
-    player_guess = int(input("What is your guess: "))
 
-    if player_guess > secret_number:
-        print(f"You guessed {player_guess}, that was too high.")
-        lose_life()
-        print(f"You have {lives} lives left.")
+
+def play():
+
+    print(logo)
+
+    choose_difficulty = input("Choose a level. Easy 'e' or Hard 'h': ")
+    secret_number = (choose_number())
+
+    if choose_difficulty == 'e':
+        lives = EASY_LEVEL
+    elif choose_difficulty == 'h':
+        lives = HARD_LEVEL
     else:
-        print(f"You guessed {player_guess}, that is too low.")
-        lose_life()
-        print(f"You have {lives} lives left.")
+        print("Please enter 'e' or 'h'.")
+    still_guessing = True
+    while still_guessing:
+        player_guess = 0
+        player_guess = int(input("What is your guess: "))
+
+        if player_guess > secret_number:
+            print(f"You guessed {player_guess}, that was too high.")
+            lives -= 1
+            print(f"You have {lives} lives left.")
+        elif player_guess < secret_number:
+            print(f"You guessed {player_guess}, that is too low.")
+            lives -= 1
+            print(f"You have {lives} lives left.")
+        else:
+            print(f"You got it! The secret number was {secret_number}")
+            still_guessing = False
+
+is_playing = True
+while is_playing:
+    play()
+    if input("Play again? y/n: ") != 'y':
+        print("Thank you for playing!")
+        is_playing = False
