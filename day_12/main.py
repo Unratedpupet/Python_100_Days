@@ -41,7 +41,7 @@ def play():
     else:
         print("Please enter 'e' or 'h'.")
     still_guessing = True
-    while still_guessing:
+    while lives > 0 and still_guessing:
         player_guess = 0
         player_guess = int(input("What is your guess: "))
 
@@ -56,6 +56,8 @@ def play():
         else:
             print(f"You got it! The secret number was {secret_number}")
             still_guessing = False
+        
+    print(f"You've run out of lives, the secret number was {secret_number}.")
 
 is_playing = True
 while is_playing:
