@@ -37,29 +37,32 @@ def report():
         print(f"{key}: {value}")
     print(f"Cash: {bank}")
 
-def make_espresso():
-    if check_resources("espresso"):
-        print("Made espresso")
-    else:
-        print("Could not make espresso, need more of an item.")
+# def check_espresso():
+#     if check_resources("espresso"):
+#         print("Made espresso")
+#     else:
+#         print("Could not make espresso, need more of an item.")
 
-def make_latte():
-    if check_resources("latte"):
-        print("Made latte")
-    else:
-        print("Could not make latte, need more of an item.")
+# def check_latte():
+#     if check_resources("latte"):
+#         print("Made latte")
+#     else:
+#         print("Could not make latte, need more of an item.")
 
-def make_cappuccino():
-    if check_resources("cappuccino"):
-        print("Made cappuccino")
-    else:
-        print("Could not make cappuccino, need more of an item.")
+# def check_espresso():
+#     if check_resources("cappuccino"):
+#         print("Made cappuccino")
+#     else:
+#         print("Could not make cappuccino, need more of an item.")
 
 def check_resources(drink: str) -> bool:
     for ingredient, amount in MENU[drink]["ingredients"].items():
         if resources[ingredient] < amount:
             return False
+    print(f"Able to make {drink}.")
     return True
+
+
 
 
 def operations():
@@ -73,11 +76,11 @@ def operations():
         elif command == "report":
             report()
         elif command == "espresso":
-            make_espresso()
+            check_resources(command)
         elif command == "latte":
-            make_latte()
+            check_resources(command)
         elif command == "cappuccino":
-            make_cappuccino()
+            check_resources(command)
         else:
             print("Please enter a valid command.")
 
