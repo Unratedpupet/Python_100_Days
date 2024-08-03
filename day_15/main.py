@@ -67,13 +67,15 @@ def charge(drink: str):
     total += 0.10 * payment_dimes
     total += 0.05 * payment_nickels
     total += 0.01 * payment_pennies
-    
+
     change = total - MENU[drink]["cost"]
 
     if total == MENU[drink]["cost"]:
         print("Exact change, thank you!")
     elif total > MENU[drink]["cost"]:
-        print(f"Thank you for your payment of {total:.2f}, your change is : ${change:.2f}.")
+        print(
+            f"Thank you for your payment of {total:.2f}, your change is : ${change:.2f}."
+        )
     else:
         print(f"Not enough money. A {drink} costs ${MENU[drink]['cost']:.2f}")
 
