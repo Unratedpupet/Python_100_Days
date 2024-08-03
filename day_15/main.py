@@ -55,6 +55,25 @@ def make_drink(drink: str):
         resources[ingredient] -= amount
 
 
+def charge(drink: str):
+    payment_quarters = int(input("Please insert quarters: "))
+    payment_dimes = int(input("Please insert dimes: "))
+    payment_nickels = int(input("Please insert nickels: "))
+    payment_pennies = int(input("Please insert pennies: "))
+
+    total = 0
+
+    total += 0.25 * payment_quarters
+    total += 0.10 * payment_dimes
+    total += 0.05 * payment_nickels
+    total += 0.01 * payment_pennies
+    
+    if total >= MENU[drink]["cost"]:
+        print("Payment recieved.")
+    else:
+        print(f"Not enough money. A {drink} costs {MENU[drink]['cost']}")
+
+
 def operations():
     on = True
 
@@ -67,12 +86,15 @@ def operations():
             report()
         elif command == "espresso":
             if check_resources(command):
+                charge(command)
                 make_drink(command)
         elif command == "latte":
             if check_resources(command):
+                charge(command)
                 make_drink(command)
         elif command == "cappuccino":
             if check_resources(command):
+                charge(command)
                 make_drink(command)
         else:
             print("Please enter a valid command.")
