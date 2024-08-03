@@ -34,12 +34,22 @@ bank = 5.00
 
 
 def report():
+    """Prints a report of all current resources and the total cash available."""
+
     for key, value in resources.items():
         print(f"{key}: {value}")
     print(f"Cash: {bank}")
 
 
 def check_resources(drink: str) -> bool:
+    """Checks if there are enough resources to make the selected drink.
+
+    Args:
+        drink (str): The name of the drink to check.
+
+    Returns:
+        bool: True if there are enough resources to make the drink, False otherwise.
+    """
     for ingredient, amount in MENU[drink]["ingredients"].items():
         if resources[ingredient] < amount:
             print(
@@ -51,11 +61,21 @@ def check_resources(drink: str) -> bool:
 
 
 def make_drink(drink: str):
+    """Deducts the required ingredients from the resources to make the selected drink.
+
+    Args:
+        drink (str): The name of the drink to make.
+    """
     for ingredient, amount in MENU[drink]["ingredients"].items():
         resources[ingredient] -= amount
 
 
 def charge(drink: str):
+    """Processes the payment for the selected drink.
+
+    Args:
+        drink (str): The name of the drink being purchased.
+    """
     payment_quarters = int(input("Please insert quarters: "))
     payment_dimes = int(input("Please insert dimes: "))
     payment_nickels = int(input("Please insert nickels: "))
@@ -81,6 +101,8 @@ def charge(drink: str):
 
 
 def operations():
+    """Runs the main operations loop, allowing the user to select drinks, get reports, or turn off the machine."""
+
     on = True
 
     while on:
