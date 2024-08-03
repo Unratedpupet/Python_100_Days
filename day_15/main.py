@@ -68,10 +68,14 @@ def charge(drink: str):
     total += 0.05 * payment_nickels
     total += 0.01 * payment_pennies
     
-    if total >= MENU[drink]["cost"]:
-        print("Payment recieved.")
+    change = total - MENU[drink]["cost"]
+
+    if total == MENU[drink]["cost"]:
+        print("Exact change, thank you!")
+    elif total > MENU[drink]["cost"]:
+        print(f"Thank you for your payment of {total:.2f}, your change is : ${change:.2f}.")
     else:
-        print(f"Not enough money. A {drink} costs {MENU[drink]['cost']}")
+        print(f"Not enough money. A {drink} costs ${MENU[drink]['cost']:.2f}")
 
 
 def operations():
@@ -86,14 +90,17 @@ def operations():
             report()
         elif command == "espresso":
             if check_resources(command):
+                print(f"Your espresso costs: ${MENU['espresso']['cost']:.2f}")
                 charge(command)
                 make_drink(command)
         elif command == "latte":
             if check_resources(command):
+                print(f"Your espresso costs: ${MENU['latte']['cost']:.2f}")
                 charge(command)
                 make_drink(command)
         elif command == "cappuccino":
             if check_resources(command):
+                print(f"Your espresso costs: ${MENU['cappuccino']['cost']:.2f}")
                 charge(command)
                 make_drink(command)
         else:
