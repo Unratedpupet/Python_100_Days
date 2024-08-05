@@ -10,8 +10,17 @@ class QuizBrain:
         self.question_number = 0
         self.question_list = question_list
 
-    
+    def still_has_questions(self) -> bool:
+        """Checks to see if there are still questions to be asked by comparing the length of the quiz bank to the current question number.
+
+        Returns:
+            bool: The T/F response to whether there are still questions to be asked.
+        """
+        return len(self.question_list) > self.question_number
+
     def next_question(self):
+        """Asks the next question by initializing the first question, incrementing, then asking.
+        """
         current_question = self.question_list[self.question_number]
         self.question_number += 1
         answer = input(f"Q{self.question_number}. {current_question.text}? True/False: ")
