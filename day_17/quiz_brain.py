@@ -27,12 +27,13 @@ class QuizBrain:
         """
         current_question = self.question_list[self.question_number]
         self.question_number += 1
-        return input(f"Q{self.question_number}. {current_question.text}? True/False: ")
+        user_answer = input(f"Q{self.question_number}. {current_question.text}? True/False: ")
+        self.check_answer(user_answer, current_question.answer)
 
-    def check_answer(self, answer: str):
-        if self.question_list[self.question_number - 1].answer == answer:
+    def check_answer(self, user_answer: str, correct_answer: str):
+        if user_answer.lower() == correct_answer.lower():
+            print("That is correct!")
             self.score += 1
-            print("That's correct!")
         else:
-            print(f"The correct answer was {self.question_list[self.question_number - 1].answer}.")
-        print(f"Current score is {self.score}/{self.question_number}.")
+            print(f"Wrong. The correct answer is {correct_answer}.")
+        print(f"Your score is {self.score}/{self.question_number}.")
