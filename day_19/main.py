@@ -1,37 +1,55 @@
-from turtle import Turtle, Screen
+import turtle as t
 import random
 
-is_race_on = False
-screen = Screen()
-screen.setup(width=500, height=400)
-user_bet = screen.textinput(title="Make your bet", prompt="Which turtle is going to win the race? Enter a color: ")
+STARTING_X_POS = -220
+STARTING_Y_POS = -60
+FINISH_LINE = 230
 
-if user_bet:
-    is_race_on= True
 
-colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-y_positions = [-70, -40, -10, 20, 50, 80]
+colors = ["red", "orange", "yellow", "green", "blue", "violet"]
 all_turtles = []
 
-for turtle_index in range(0, 6):
-    new_turtle = Turtle(shape="turtle")
-    new_turtle.penup()
-    new_turtle.color(colors[turtle_index])
-    new_turtle.goto(x=-230, y=y_positions[turtle_index])
-    all_turtles.append(new_turtle)
+
+screen = t.Screen()
+
+screen.setup(width=500, height=400)
+user_bet = screen.textinput(title="Make your bet.", prompt="Which turtle will win the race? Enter a color: ")
+
+def race_prep():
+    y_increment = 0
+    for turtle_index in range(6):
+        new_turtle = t.Turtle(shape="turtle")
+        new_turtle.color(colors[turtle_index])
+        new_turtle.pu()
+        new_turtle.setposition(STARTING_X_POS, STARTING_Y_POS + y_increment)
+        y_increment += 30
+        all_turtles.append(new_turtle)
+    
+
+def move_forward():
+    pass
+
+is_race_on = False
+
+if user_bet:
+    is_race_on = True
+
+race_prep()
 
 while is_race_on:
 
     for turtle in all_turtles:
-        if turtle.xcor() > 220:
-            winning_turtle = turtle.pencolor()
-            if winning_turtle == user_bet:
-                print(f"You've won! The {winning_turtle} is the winner")
-            else:
-                print(f"You've lost! The {winning_turtle} is the winner")
-            is_race_on = False
         random_distance = random.randint(0, 10)
         turtle.forward(random_distance)
+        if turtle.xcor() >= FINISH_LINE:
+            is_race_on = False
+            winner = turtle.pencolor().title()
+            if user_bet == winner:
+                print("You win!")
+            else:
+                print("You lost")
+            print(f"The {turtle.pencolor().title()} turtle won the race!")
+            
 
 
 screen.exitonclick()
