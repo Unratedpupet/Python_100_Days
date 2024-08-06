@@ -21,6 +21,7 @@ snake = Snake()
 #     snake_body.append(new_snake)
 #     x_increment -= 20
 
+
 # def move_up():
 #     snake_body[0].setheading(90)
     
