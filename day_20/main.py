@@ -35,5 +35,6 @@ while is_alive:
     
     is_alive = snake.detect_wall_collision()
 
+scoreboard.game_over()
         
 screen.exitonclick()

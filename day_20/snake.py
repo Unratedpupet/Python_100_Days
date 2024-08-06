@@ -56,10 +56,7 @@ class Snake:
 
     def detect_wall_collision(self) -> bool:
 
-        if self.head.xcor() >= 300 or self.head.xcor() <= -300:
-            print("Game Over")
-            return False
-        elif self.head.ycor() >= 300 or self.head.ycor() <= -300:
+        if self.head.xcor() >= 300 or self.head.xcor() <= -300 or self.head.ycor() >= 300 or self.head.ycor() <= -300:
             print("Game Over")
             return False
         else:
