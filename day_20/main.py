@@ -32,6 +32,8 @@ while is_alive:
         food.refresh()
         scoreboard.increase_score()
         snake.add_body()
+    
+    is_alive = snake.detect_wall_collision()
 
         
 screen.exitonclick()

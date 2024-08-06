@@ -53,3 +53,14 @@ class Snake:
             self.snake_body[snake_body_index].goto(new_x, new_y)
         
         self.head.forward(MOVE_DISTANCE)
+
+    def detect_wall_collision(self) -> bool:
+
+        if self.head.xcor() >= 300 or self.head.xcor() <= -300:
+            print("Game Over")
+            return False
+        elif self.head.ycor() >= 300 or self.head.ycor() <= -300:
+            print("Game Over")
+            return False
+        else:
+            return True
