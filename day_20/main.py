@@ -34,6 +34,7 @@ while is_alive:
         snake.add_body()
     
     is_alive = snake.detect_wall_collision()
+    is_alive = snake.detect_tail_collision()
 
 scoreboard.game_over()
         
