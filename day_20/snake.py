@@ -1,6 +1,10 @@
 import turtle as t
 
 MOVE_DISTANCE = 20
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
 class Snake:
 
@@ -20,20 +24,20 @@ class Snake:
             x_increment -= 20
 
     def move_up(self):
-        if self.head.heading() != 270:  # Prevent moving directly backward
-            self.head.setheading(90)
+        if self.head.heading() != DOWN:  # Prevent moving directly backward
+            self.head.setheading(UP)
 
     def move_down(self):
-        if self.head.heading() != 90:  # Prevent moving directly backward
-            self.head.setheading(270)
+        if self.head.heading() != UP:  # Prevent moving directly backward
+            self.head.setheading(DOWN)
 
     def move_right(self):
-        if self.head.heading() != 180:  # Prevent moving directly backward
-            self.head.setheading(0)
+        if self.head.heading() != LEFT:  # Prevent moving directly backward
+            self.head.setheading(RIGHT)
 
     def move_left(self):
-        if self.head.heading() != 0:  # Prevent moving directly backward
-            self.head.setheading(180)
+        if self.head.heading() != RIGHT:  # Prevent moving directly backward
+            self.head.setheading(LEFT)
 
     def move(self):
         for snake_body_index in range(len(self.snake_body)-1, 0, -1):
