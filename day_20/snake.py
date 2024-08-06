@@ -23,6 +23,13 @@ class Snake:
             self.snake_body.append(new_snake)
             x_increment -= 20
 
+    def add_body(self):
+            new_snake = t.Turtle(shape="square")
+            new_snake.color("white")
+            new_snake.penup()  # Use 'penup' instead of 'pu' for clarity
+            new_snake.setposition(self.snake_body[-1].position())
+            self.snake_body.append(new_snake)
+
     def move_up(self):
         if self.head.heading() != DOWN:  # Prevent moving directly backward
             self.head.setheading(UP)

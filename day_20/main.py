@@ -2,6 +2,7 @@ import turtle as t
 import time
 from snake import Snake
 from food import Food
+from scoreboard import Scoreboard
 
 screen = t.Screen()
 screen.setup(width=600, height=600)
@@ -12,6 +13,7 @@ screen.listen()
 
 snake = Snake()
 food = Food()
+scoreboard = Scoreboard()
 
 is_alive = True
 
@@ -28,6 +30,8 @@ while is_alive:
 
     if snake.head.distance(food) < 15:
         food.refresh()
+        scoreboard.increase_score()
+        snake.add_body()
 
         
 screen.exitonclick()
