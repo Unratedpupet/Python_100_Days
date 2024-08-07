@@ -13,7 +13,7 @@ class Ball(Turtle):
         self.shape("square")
         self.penup()
         self.color("white")
-        self.setheading(-45)
+        self.setheading(45)
 
     def move(self):
         
@@ -22,11 +22,13 @@ class Ball(Turtle):
         self.bounce_top_bottom()
 
     def bounce_top_bottom(self):
-        if self.ycor() >= TOP or self.ycor() <= BOTTOM:
-            self.setheading(self.heading() * -1)
+        if self.ycor() >= TOP: 
+            self.setheading(self.heading() - 90)
+        elif self.ycor() <= BOTTOM:
+            self.setheading(self.heading() + 90)
         
     def bounce_sides(self):
         print(self.xcor())
         if self.xcor() >= RIGHT or self.xcor() <= LEFT:
-            self.setheading(self.heading() * -1)
+            self.setheading(self.heading() +180)
 
