@@ -4,8 +4,8 @@ import random
 MOVE_SPEED = 15
 TOP = 320
 BOTTOM = -320
-RIGHT = 300
-LEFT = -300
+RIGHT = 570
+LEFT = -570
 
 class Ball(Turtle):
     def __init__(self):
@@ -13,22 +13,22 @@ class Ball(Turtle):
         self.shape("square")
         self.penup()
         self.color("white")
-        self.setheading(45)
+        self.dx = MOVE_SPEED
+        self.dy = MOVE_SPEED
 
     def move(self):
-        
-        self.forward(MOVE_SPEED)
-        # self.bounce_sides()
+        new_x = self.xcor() + self.dx
+        new_y = self.ycor() + self.dy
+
+        self.goto(new_x, new_y)
+
+        self.bounce_sides()
         self.bounce_top_bottom()
 
     def bounce_top_bottom(self):
-        if self.ycor() >= TOP: 
-            self.setheading(self.heading() - 90)
-        elif self.ycor() <= BOTTOM:
-            self.setheading(self.heading() + 90)
-        
-    def bounce_sides(self):
-        print(self.xcor())
-        if self.xcor() >= RIGHT or self.xcor() <= LEFT:
-            self.setheading(self.heading() +180)
+        if self.ycor() >= TOP or self.ycor() <= BOTTOM:
+            self.dy *= -1
 
+    def bounce_sides(self):
+        if self.xcor() >= RIGHT or self.xcor() <= LEFT:
+            self.dx *= -1
