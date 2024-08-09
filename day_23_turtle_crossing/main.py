@@ -25,7 +25,7 @@ for _ in range(25):
     cars.append(new_car)
 
 screen.listen()
-screen.onkey(dana.move_up, "w")
+screen.onkeypress(dana.move_up, "w")
 
 is_game_on = True
 
