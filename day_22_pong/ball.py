@@ -1,7 +1,7 @@
 from turtle import Turtle
 import random
 
-MOVE_SPEED = 15
+MOVE_SPEED = -15
 TOP = 320
 BOTTOM = -320
 RIGHT = 570
@@ -22,13 +22,27 @@ class Ball(Turtle):
 
         self.goto(new_x, new_y)
 
-        self.bounce_sides()
+        # self.out_of_bounds()
         self.bounce_top_bottom()
 
     def bounce_top_bottom(self):
         if self.ycor() >= TOP or self.ycor() <= BOTTOM:
             self.dy *= -1
 
-    def bounce_sides(self):
-        if self.xcor() >= RIGHT or self.xcor() <= LEFT:
+    def out_of_bounds(self) -> int:
+        
+        if self.xcor() >= RIGHT:
+            self.goto(0, 0)
+            # print("Ball: exits right side")
             self.dx *= -1
+            return 1
+        elif self.xcor() <= LEFT:
+            self.goto(0, 0)
+            self.dx *= -1
+            # print("Ball: exits left side.")
+            return 2
+        
+
+    def paddle_bounce(self):
+        self.dx *= -1
+            
