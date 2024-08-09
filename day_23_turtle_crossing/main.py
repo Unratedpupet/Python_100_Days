@@ -1,6 +1,6 @@
 from turtle import Turtle, Screen
 from player import Player
-from cars import Car
+from car import Car
 from scoreboard import Scoreboard
 import time
 
