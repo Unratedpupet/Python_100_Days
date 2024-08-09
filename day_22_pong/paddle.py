@@ -1,6 +1,5 @@
 from turtle import Turtle
 
-PADDLE_HEIGHT = 5
 PADDLE_SPEED = 15
 
 class Paddle(Turtle):
@@ -13,12 +12,11 @@ class Paddle(Turtle):
         self.penup()
         self.speed("fastest")
         self.shapesize(stretch_wid=5, stretch_len=1)
+        self.goto(x_pos, 0)
             
 
     def move_up(self):
-        for paddle_index in range(len(self.paddle_segments)):
-            self.paddle_segments[paddle_index].goto(self.paddle_segments[paddle_index].xcor(), self.paddle_segments[paddle_index].ycor() + PADDLE_SPEED)
+        self.goto(self.xcor(), self.ycor() + PADDLE_SPEED)
 
     def move_down(self):
-        for paddle_index in range(len(self.paddle_segments)):
-            self.paddle_segments[paddle_index].goto(self.paddle_segments[paddle_index].xcor(), self.paddle_segments[paddle_index].ycor() - PADDLE_SPEED)
+        self.goto(self.xcor(), self.ycor() - PADDLE_SPEED)
