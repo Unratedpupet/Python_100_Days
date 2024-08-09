@@ -8,6 +8,7 @@ SCREEN_HEIGHT = 700
 SCREEN_WIDTH = 1200
 RIGHT_PADDLE_X_POS = 550
 LEFT_PADDLE_X_POS = -550
+PADDLE_SIZE = 5
 
 ball = Ball()
 right_paddle = Paddle(RIGHT_PADDLE_X_POS)
@@ -33,6 +34,17 @@ while game_is_on:
 
     ball.move() 
 
+    for paddle_segment in right_paddle.paddle_segments:
+        if ball.distance(paddle_segment) < 15:
+            print("MAIN: ball within 15 of right paddle.")
+            ball.paddle_bounce()
+            break
+
+    for paddle_segment in left_paddle.paddle_segments:
+        if ball.distance(paddle_segment) < 15:
+            print("MAIN: ball within 15 of right paddle.")
+            ball.paddle_bounce()
+            break
 
     result = ball.out_of_bounds()
     if result == 1:

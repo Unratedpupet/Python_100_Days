@@ -4,8 +4,8 @@ import random
 MOVE_SPEED = -15
 TOP = 320
 BOTTOM = -320
-RIGHT = 570
-LEFT = -570
+RIGHT = 580
+LEFT = -580
 
 class Ball(Turtle):
     def __init__(self):
