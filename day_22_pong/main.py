@@ -13,15 +13,14 @@ right_paddle = Paddle(RIGHT_PADDLE_X_POS)
 left_paddle = Paddle(LEFT_PADDLE_X_POS)
 
 
-
-
-
 screen = t.Screen()
 screen.bgcolor("black")
 screen.title("PONG")
 screen.setup(height=SCREEN_HEIGHT, width=SCREEN_WIDTH)
 screen.tracer(0)
-
+screen.listen()
+screen.onkeypress(right_paddle.move_up, "Up")
+screen.onkeypress(right_paddle.move_down, "Down")
 
 game_is_on = True
 
@@ -30,7 +29,7 @@ while game_is_on:
     time.sleep(0.05)
 
     ball.move() 
-    right_paddle.move_up()
+    
 
 
 
