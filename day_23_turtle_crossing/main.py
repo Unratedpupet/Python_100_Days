@@ -1,6 +1,7 @@
 from turtle import Turtle, Screen
 from player import Player
 from cars import Car
+from scoreboard import Scoreboard
 import time
 
 screen = Screen()
@@ -19,8 +20,9 @@ screen.tracer(0)
 
 dana = Player()
 cars = []
+scoreboard = Scoreboard()
 
-for _ in range(25):
+for _ in range(5):
     new_car = Car()
     cars.append(new_car)
 
@@ -40,6 +42,7 @@ while is_game_on:
     if dana.ycor() > 290:
         dana.start_position()
         print("Next level!")
+        scoreboard.increase_level()
         for car in cars:
             car.increase_speed()
         
