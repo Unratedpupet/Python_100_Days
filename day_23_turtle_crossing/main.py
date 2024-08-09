@@ -18,7 +18,11 @@ screen.tracer(0)
 """
 
 dana = Player()
-cars = Car()
+cars = []
+
+for _ in range(25):
+    new_car = Car()
+    cars.append(new_car)
 
 screen.listen()
 screen.onkey(dana.move_up, "w")
@@ -29,8 +33,9 @@ while is_game_on:
     screen.update()
     time.sleep(0.1)
 
-    cars.move()
-
+    
+    for car in cars:
+        car.move()
 
 
 screen.exitonclick()

@@ -12,8 +12,7 @@ class Car(Turtle):
         self.shapesize(stretch_len=2, stretch_wid=1)
         self.color(random.choice(colors))
         self.move_speed = 5
-        self.move()
-        self.reset_position()
+        self.goto(x=random.randint(-300, 300), y=random.randint(-240, 290))
 
 
     def move(self):
@@ -22,4 +21,4 @@ class Car(Turtle):
             self.reset_position()
 
     def reset_position(self):
-        self.goto(x=320, y=random.randint(-260, 290))
+        self.goto(x=320, y=random.randint(-240, 290))
