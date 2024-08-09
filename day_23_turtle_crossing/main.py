@@ -1,5 +1,6 @@
 from turtle import Turtle, Screen
 from player import Player
+from cars import Car
 import time
 
 screen = Screen()
@@ -17,6 +18,7 @@ screen.tracer(0)
 """
 
 dana = Player()
+cars = Car()
 
 screen.listen()
 screen.onkey(dana.move_up, "w")
@@ -26,6 +28,8 @@ is_game_on = True
 while is_game_on:
     screen.update()
     time.sleep(0.1)
+
+    cars.move()
 
 
 
