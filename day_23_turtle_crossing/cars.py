@@ -1,8 +1,9 @@
 from turtle import Turtle
 import random
 
-colors = ['red', 'blue', 'green', 'yellow', 'cyan', 'magenta', 'orange', 'purple', 'pink', 'brown', 'gray', 'black', 'white', 'navy', 'maroon', 'lime', 'olive', 'teal', 'aqua', 'fuchsia']
+colors = ['red', 'blue', 'green', 'yellow', 'cyan', 'magenta', 'orange', 'purple', 'pink', 'brown', 'gray', 'black', 'navy', 'maroon', 'lime', 'olive', 'teal', 'aqua', 'fuchsia']
 
+DIFFICULTY_SETTING = 1.2
 
 class Car(Turtle):
 
@@ -22,3 +23,6 @@ class Car(Turtle):
 
     def reset_position(self):
         self.goto(x=320, y=random.randint(-240, 290))
+
+    def increase_speed(self):
+        self.move_speed *= DIFFICULTY_SETTING

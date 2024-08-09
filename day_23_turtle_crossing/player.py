@@ -18,3 +18,4 @@ class Player(Turtle):
 
     def start_position(self):
         self.goto(0, -280)
+
