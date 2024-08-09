@@ -37,10 +37,15 @@ while is_game_on:
     for car in cars:
         car.move()
 
-    if dana.ycor() > 300:
+    if dana.ycor() > 290:
         dana.start_position()
         print("Next level!")
         for car in cars:
             car.increase_speed()
+        
+    for car in cars:
+        if dana.distance(car) < 20:
+            print("Game Over")
+            is_game_on = False
 
 screen.exitonclick()
