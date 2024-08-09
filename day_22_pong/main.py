@@ -34,7 +34,7 @@ while game_is_on:
     screen.update()
     time.sleep(0.05)
 
-    ball.move() 
+    ball.move()
 
     if ball.distance(right_paddle) < 50 and ball.xcor() > RIGHT_PADDLE_X_POS - 10:
         ball.paddle_bounce()
@@ -47,10 +47,7 @@ while game_is_on:
         player_one_scoreboard.increase_score()
     elif result == 2:
         # print("MAIN: ball.out_of_bounds returned 2")
-        player_two_scoreboard.increase_score()      
-    
-
-
+        player_two_scoreboard.increase_score()
 
 
 screen.exitonclick()
