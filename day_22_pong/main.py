@@ -34,9 +34,9 @@ while game_is_on:
 
     ball.move() 
 
-    if ball.distance(right_paddle) < 15:
+    if ball.distance(right_paddle) < 50 and ball.xcor() > RIGHT_PADDLE_X_POS - 10:
         ball.paddle_bounce()
-    elif ball.distance(left_paddle) < 15:
+    elif ball.distance(left_paddle) < 50 and ball.xcor() < LEFT_PADDLE_X_POS + 10:
         ball.paddle_bounce()
 
     result = ball.out_of_bounds()
