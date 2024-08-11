@@ -18,11 +18,13 @@ screen.tracer(0)
 
 """
 
+NUM_OF_CARS = 20
+
 dana = Player()
 cars = []
 scoreboard = Scoreboard()
 
-for _ in range(5):
+for _ in range(NUM_OF_CARS):
     new_car = Car()
     cars.append(new_car)
 
